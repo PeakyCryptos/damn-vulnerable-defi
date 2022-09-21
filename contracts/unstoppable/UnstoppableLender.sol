@@ -33,10 +33,12 @@ contract UnstoppableLender is ReentrancyGuard {
     function flashLoan(uint256 borrowAmount) external nonReentrant {
         require(borrowAmount > 0, "Must borrow at least one token");
 
+        // checks balance of ERC20 tokens via the token contract maping
         uint256 balanceBefore = damnValuableToken.balanceOf(address(this));
         require(balanceBefore >= borrowAmount, "Not enough tokens in pool");
 
         // Ensured by the protocol via the `depositTokens` function
+        // will fail if record in poolBalance does not match actual token balance
         assert(poolBalance == balanceBefore);
         
         damnValuableToken.transfer(msg.sender, borrowAmount);
