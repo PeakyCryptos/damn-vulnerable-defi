@@ -1,8 +1,8 @@
 pragma solidity ^0.8.0;
 
-import "./SideEnteranceLenderPool";
+import "./SideEntranceLenderPool.sol";
 
-contract attackPool {
+contract attackSideEntrance {
     SideEntranceLenderPool public pool;
 
     constructor(address _addressPool) {
